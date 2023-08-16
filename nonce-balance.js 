@@ -1,0 +1,53 @@
+import {ethers} from 'ethers';
+
+
+
+//write a script that query transactioncount and balance on ethereum mainnet, sepolia and goerli
+//find the addrese of usdc from ethereum mainnet, return name symbol total supple 
+
+const address = "0x4bbB77213eEd76a3aA2c4CAAFB07BfF19677ca71"
+async function mainnetResults() {
+    const provider = ethers.getDefaultProvider("mainnet");
+    const balance = await provider.getBalance(address);
+    const transactionCount = await provider.getTransactionCount(address);
+    const blockNumber = await provider.getBlockNumber();
+
+    console.log(`Details of ${address} on mainnet`);
+    console.log("Balance: ", ethers.formatEther(balance));
+    console.log("Transaction Count: ", transactionCount);
+    console.log("Block Number: ", blockNumber);
+    console.log("\n");
+    return { balance, transactionCount, blockNumber };
+}
+
+async function sepoliaResults() {
+    const provider = ethers.getDefaultProvider("sepolia");
+    const balance = await provider.getBalance(address);
+    const transactionCount = await provider.getTransactionCount(address);
+    const blockNumber = await provider.getBlockNumber();
+
+    console.log(`Details of ${address} on sepolia testnet`)
+    console.log("Balance: ", ethers.formatEther(balance));
+    console.log("Transaction Count: ", transactionCount);
+    console.log("Block Number: ", blockNumber);
+    console.log("\n");
+    return { balance, transactionCount, blockNumber };
+}
+
+async function goerliResults() {
+    const provider = ethers.getDefaultProvider("goerli");
+    const balance = await provider.getBalance(address);
+    const transactionCount = await provider.getTransactionCount(address);
+    const blockNumber = await provider.getBlockNumber();
+
+    console.log(`Details of ${address} on goerli testnet`)
+    console.log("Balance: ", ethers.formatEther(balance));
+    console.log("Transaction Count: ", transactionCount);
+    console.log("Block Number: ", blockNumber);
+    console.log("\n");
+    return { balance, transactionCount, blockNumber };
+}
+
+mainnetResults()
+sepoliaResults();
+goerliResults();
